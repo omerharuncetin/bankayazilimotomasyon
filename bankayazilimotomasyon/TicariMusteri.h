@@ -1,7 +1,7 @@
 #pragma once
-#include "Musteri.h"
+#include "BireyselMusteri.h"
 class TicariMusteri :
-    public Musteri
+    public BireyselMusteri
 {
 };
 
