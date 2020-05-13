@@ -24,5 +24,37 @@
     <ClCompile Include="fatihtest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Banka.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Musteri.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TicariMusteri.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BireyselMusteri.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hesap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Banka.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Musteri.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TicariMusteri.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BireyselMusteri.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hesap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
