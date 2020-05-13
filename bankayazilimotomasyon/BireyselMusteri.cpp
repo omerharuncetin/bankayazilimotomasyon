@@ -2,7 +2,6 @@
 
 BireyselMusteri::BireyselMusteri(string ad, string soyad, string telefon, string eposta, string tc, int musteriNo)
 {
-	this->MusteriHesaplari = new Hesap[10];
 	this->MusteriNo = musteriNo;
 	this->Ad = ad;
 	this->Soyad = soyad;
@@ -26,15 +25,13 @@ string BireyselMusteri::ParaYatir(int tutar)
 	return "test";
 }
 
-BireyselMusteri::BireyselMusteri()
+BireyselMusteri::BireyselMusteri(int musteriNo)
 {
-	this-> MusteriHesaplari = new Hesap[10];
+	this->MusteriNo = musteriNo;
 }
 
 BireyselMusteri::~BireyselMusteri()
 {
-	delete [] MusteriHesaplari;
-	MusteriHesaplari = NULL;
 }
 string BireyselMusteri::BilgiGuncelle(string ad, string soyad, string telefon, string eposta, string tc)
 {

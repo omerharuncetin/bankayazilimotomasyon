@@ -5,7 +5,6 @@
 using namespace std;
 class BireyselMusteri
 {
-	Hesap *MusteriHesaplari;
 protected:
 	int MusteriNo;
 	string Ad;
@@ -16,7 +15,7 @@ protected:
 	
 public:
 	BireyselMusteri(string ad, string soyad, string telefon, string eposta, string tc, int musteriNo);
-	BireyselMusteri();
+	BireyselMusteri(int musteriNo);
 	virtual string BilgileriniGetir();
 	virtual string BilgiGuncelle(string ad, string soyad, string telefon, string eposta, string tc);
 	string TCNOGetir() { return this-> TCNO; }

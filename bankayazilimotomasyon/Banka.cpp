@@ -6,20 +6,27 @@ int Banka::YeniMusteriNumarasi()
 
 bool Banka::HesapEkle(Hesap hesap)
 {
-	if(sonHesapYeri == 199)
-		return false;
-	Hesaplar[sonHesapYeri++] = hesap;
-	return true;
+	Hesaplar.push_back(hesap);
 }
 
 bool Banka::HesapSil(int HesapNumarasi)
 {
-	
+	return true;
 }
-
 
 Banka::Banka()
 {
 	
 }
 
+bool Banka::BireyselMusteriEkle(BireyselMusteri musteri)
+{
+	BireyselMusteriler->push_back(musteri);
+	return true;
+}
+
+bool Banka::TicariMusteriEkle(TicariMusteri musteri)
+{
+	TicariMusteriler->push_back(musteri);
+	return true;
+}
