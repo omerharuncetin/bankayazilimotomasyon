@@ -5,9 +5,13 @@ using namespace std;
 class Banka
 {
 private:
-	Hesap hesaplar[100];
+	Hesap Hesaplar[200];
+	int sonMusteriNumarasi = 0;
+	int sonHesapYeri = 0;
 public:
-	string operator<<(int hesapNumarasi);
-	void HesapEkle(Hesap hesap);
+	bool HesapEkle(Hesap hesap);
+	bool HesapSil(int HesapNumarasi);
+	int YeniMusteriNumarasi();
+	Banka();
 };
 

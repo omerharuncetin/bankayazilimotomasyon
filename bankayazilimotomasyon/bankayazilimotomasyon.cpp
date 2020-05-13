@@ -1,11 +1,17 @@
 // bankayazilimotomasyon.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#include <ctime>
 #include <iostream>
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello izmir!\n";
+	
+	struct tm newtime;
+	time_t now = time(0);
+	localtime_s(&newtime, &now);
+	std::cout << "Hello izmir!\n" << newtime.tm_mday + 1 << " " << newtime.tm_mon << " " << newtime.tm_year + 1900 <<  endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

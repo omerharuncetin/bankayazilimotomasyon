@@ -140,8 +140,8 @@
     <ClCompile Include="Banka.cpp" />
     <ClCompile Include="bankayazilimotomasyon.cpp" />
     <ClCompile Include="BireyselMusteri.cpp" />
-    <ClCompile Include="fatihtest.cpp" />
     <ClCompile Include="Hesap.cpp" />
+    <ClCompile Include="Islem.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TicariMusteri.cpp" />
   </ItemGroup>
@@ -149,6 +149,7 @@
     <ClInclude Include="Banka.h" />
     <ClInclude Include="BireyselMusteri.h" />
     <ClInclude Include="Hesap.h" />
+    <ClInclude Include="Islem.h" />
     <ClInclude Include="TicariMusteri.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
