@@ -3,16 +3,16 @@
 
 #include <ctime>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int main()
 {
-	
 	struct tm newtime;
 	time_t now = time(0);
 	localtime_s(&newtime, &now);
-	std::cout << "Hello izmir!\n" << newtime.tm_mday + 1 << " " << newtime.tm_mon << " " << newtime.tm_year + 1900 <<  endl;
-}
+	cout << "Hello izmir!\n" << newtime.tm_mday + 1 << " " << newtime.tm_mon << " " << newtime.tm_year + 1900 <<  endl;
+}	
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

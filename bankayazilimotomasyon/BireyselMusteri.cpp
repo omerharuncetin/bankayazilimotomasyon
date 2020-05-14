@@ -40,4 +40,5 @@ string BireyselMusteri::BilgiGuncelle(string ad, string soyad, string telefon, s
 	this->Telefon = telefon;
 	this->Eposta = eposta;
 	this->TCNO = tc;
+	return "ok";
 }
