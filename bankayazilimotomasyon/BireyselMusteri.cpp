@@ -1,6 +1,6 @@
 #include "BireyselMusteri.h"
 
-BireyselMusteri::BireyselMusteri(string ad, string soyad, string telefon, string eposta, string tc, int musteriNo)
+BireyselMusteri::BireyselMusteri(string ad, string soyad, string telefon, string eposta, string tc, int musteriNo, int sifre)
 {
 	this->MusteriNo = musteriNo;
 	this->Ad = ad;
@@ -8,6 +8,7 @@ BireyselMusteri::BireyselMusteri(string ad, string soyad, string telefon, string
 	this->Telefon = telefon;
 	this->Eposta = eposta;
 	this->TCNO = tc;
+	this->Sifre = sifre;
 }
 
 string BireyselMusteri::BilgileriniGetir()
@@ -25,9 +26,10 @@ string BireyselMusteri::ParaYatir(int tutar)
 	return "test";
 }
 
-BireyselMusteri::BireyselMusteri(int musteriNo)
+BireyselMusteri::BireyselMusteri(int musteriNo, int sifre)
 {
 	this->MusteriNo = musteriNo;
+	this->Sifre = sifre;
 }
 
 BireyselMusteri::~BireyselMusteri()
