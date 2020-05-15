@@ -9,15 +9,17 @@ class Hesap
 protected:
 	string TcNumarasi;
 	string HesapNumarasi;
-	int HesapTutari;
+	int HesapTutari ;
 	int IslemTutari;
 	string Sifre;
 	string operator<<(int hesapNumarasi);
 
 public:
+	Hesap(string tcNumarasi, string hesapNumarasi, string sifre);
 	virtual string ParaGirisi(int tutar);
 	virtual string ParaCikisi(int tutar);
 	string HesapBilgileriGetir();
+	
 	
 };
 

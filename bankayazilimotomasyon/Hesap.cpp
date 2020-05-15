@@ -12,3 +12,10 @@ string Hesap::HesapBilgileriGetir() {
 		          "\nHesap tutari: " + to_string(this->HesapTutari);
 	return temp;
 }
+
+Hesap::Hesap(string tcNumarasi, string hesapNumarasi, string sifre) {
+	this->HesapTutari = 0;
+	this->TcNumarasi = tcNumarasi;
+	this->Sifre = sifre;
+	this->HesapNumarasi = hesapNumarasi;
+}
