@@ -17,7 +17,7 @@ string Hesap::ParaGirisi(int tutar) {
 bool Hesap::ParaCikisi(int tutar) {
 	if (this->HesapTutari < tutar)
 		return false;
-	
+
 	this->HesapTutari -= tutar;
 	Islem islem;
 	islem.IslemTipi = "Para Cekme";
@@ -25,11 +25,11 @@ bool Hesap::ParaCikisi(int tutar) {
 	struct tm newTime;
 	islem.Tarih = newTime;
 	Islemler.push_back(islem);
-	
+
 	return true;
 }
 string Hesap::HesapBilgileriGetir() {
-	string temp = "Musteri no: " + to_string(this->MusteriNumarasi)+
+	string temp = "Musteri no: " + to_string(this->MusteriNumarasi) +
 		"\nHesap numarasi: " + to_string(this->HesapNumarasi) +
 		"\nHesap tutari: " + to_string(this->HesapTutari);
 	return temp;
@@ -38,14 +38,14 @@ string Hesap::HesapBilgileriGetir() {
 Hesap::Hesap(int musteriNumarasi, int hesapNumarasi, string sifre) {
 	this->HesapTutari = 0;
 	this->MusteriNumarasi = musteriNumarasi;
-	this->Sifre = sifre;
 	this->HesapNumarasi = hesapNumarasi;
+	this->Sifre = sifre;
 	this->TakmaHesapAdi = "Default";
 }
 Hesap::Hesap(int musteriNumarasi, int hesapNumarasi, string sifre, string takmaHesapAdi) {
 	this->HesapTutari = 0;
 	this->MusteriNumarasi = musteriNumarasi;
-	this->Sifre = sifre;
 	this->HesapNumarasi = hesapNumarasi;
+	this->Sifre = sifre;
 	this->TakmaHesapAdi = takmaHesapAdi;
 }
