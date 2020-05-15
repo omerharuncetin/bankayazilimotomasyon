@@ -2,12 +2,14 @@
 
 
 TicariMusteri::TicariMusteri(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad,
-							 string soyad, string telefon, string eposta, string tcNo) {
+							 string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo) {
 	this->Ad = ad;
 	this->Soyad = soyad;
 	this->Telefon = telefon;
 	this->Eposta = eposta;
 	this->TCNO = tcNo;
+	this->Sifre = sifre;
+	this->MusteriNo = musteriNo;
 	this->SirketFaksNumarasi = sirketFaksNumarasi;
 	this->SirketVergiNumarasi = sirketVergiNumarasi;
 }
@@ -32,12 +34,14 @@ string TicariMusteri::ParaYatir(int tutar) {
 	//to do;
 }
 void TicariMusteri::BilgiGuncelle(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad,
-								  string soyad, string telefon, string eposta, string tcNo) {
+								  string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo) {
 	this->Ad = ad;
 	this->Soyad = soyad;
 	this->Telefon = telefon;
 	this->Eposta = eposta;
 	this->TCNO = tcNo;
+	this->Sifre = sifre;
+	this->MusteriNo = musteriNo;
 	this->SirketFaksNumarasi = sirketFaksNumarasi;
 	this->SirketVergiNumarasi = sirketVergiNumarasi;
 	

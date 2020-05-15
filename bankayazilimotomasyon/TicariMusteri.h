@@ -8,10 +8,10 @@ protected:
 
 public:
 	TicariMusteri(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad, 
-				  string soyad, string telefon, string eposta, string tcNo);
+				  string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo);
 	virtual string SirketBilgileriniGetir();
 	virtual void BilgiGuncelle(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad,
-							   string soyad, string telefon, string eposta, string tcNo);
+							   string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo);
 	
 	string ParaCek(int tutar) override {};
 
