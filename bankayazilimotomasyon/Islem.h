@@ -9,4 +9,3 @@ public:
 	string IslemTipi;
 	int Tutar;
 };
-

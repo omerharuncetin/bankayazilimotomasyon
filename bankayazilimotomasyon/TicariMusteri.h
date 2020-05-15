@@ -5,22 +5,21 @@ class TicariMusteri : BireyselMusteri {
 protected:
 	string SirketVergiNumarasi;
 	string SirketFaksNumarasi;
-	BireyselMusteri MusteriBilgileri;
 
 public:
-	TicariMusteri(string sirketVergiNumarasi, string sirketFaksNumarasi, BireyselMusteri musteriBilgileri);
+	TicariMusteri(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad, 
+				  string soyad, string telefon, string eposta, string tcNo);
 	virtual string SirketBilgileriniGetir();
-	virtual void BilgiGuncelle(string sirketVergiNumarasi,
-								 string sirketFaksNumarasi,
-								 BireyselMusteri musteriBilgileri);
+	virtual void BilgiGuncelle(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad,
+							   string soyad, string telefon, string eposta, string tcNo);
 	
-	string ParaCek(int tutar) override {
+	string ParaCek(int tutar) override {};
 
-	};
+	string ParaYatir(int tutar) override {};
 
-	string ParaYatir(int tutar) override {
+	string BilgileriniGetir() override {};
 
-	};
+
 
 	
 };

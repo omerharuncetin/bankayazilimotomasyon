@@ -17,7 +17,6 @@ bool Banka::HesapSil(int HesapNumarasi)
 
 Banka::Banka()
 {
-	
 }
 
 bool Banka::BireyselMusteriEkle(BireyselMusteri musteri)
@@ -59,5 +58,4 @@ Hesap Banka::HesapBul(int hesapNo)
 	{
 		return Hesaplar[i];
 	}
-	
 }

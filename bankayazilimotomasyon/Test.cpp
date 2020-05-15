@@ -1,10 +1,11 @@
 #include "BireyselMusteri.h"
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 
 int main() {
-    BireyselMusteri bilgiler("fatih", "hazr", "55", "ff", "44", 4);
-    TicariMusteri Fatih("454545", "4545", bilgiler);
+    time_t tarih = time(NULL);
+    cout << tarih;
     
 }

@@ -25,4 +25,3 @@ public:
 	bool TicariMusteriEkle(TicariMusteri musteri);
 	Banka();
 };
-
