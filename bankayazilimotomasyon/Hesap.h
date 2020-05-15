@@ -9,8 +9,8 @@ using namespace  std;
 class Hesap
 {
 protected:
-	string TcNumarasi;
-	string HesapNumarasi;
+	int MusteriNumarasi;
+	int HesapNumarasi;
 	int HesapTutari;
 	int IslemTutari;
 	string Sifre;
@@ -20,8 +20,11 @@ protected:
 
 public:
 	Hesap(string tcNumarasi, string hesapNumarasi, string sifre);
-	virtual string ParaGirisi(int tutar, Islem islem);
-	virtual string ParaCikisi(int tutar, Islem islem);
+	virtual string ParaGirisi(int tutar);
+	int HesapNumarasiAl() { return this->HesapNumarasi; }
+	int HesapTutariAl() { return this->HesapTutari; }
+	int MusteriNumarasiAl() { return this->MusteriNumarasi; }
+	virtual bool ParaCikisi(int tutar);
 	string HesapBilgileriGetir();
 	
 };

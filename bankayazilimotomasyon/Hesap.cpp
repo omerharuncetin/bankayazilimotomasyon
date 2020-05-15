@@ -5,34 +5,39 @@
 
 using namespace std;
 
-string Hesap::ParaGirisi(int tutar, Islem islem) {
+string Hesap::ParaGirisi(int tutar) {
 	this->HesapTutari += tutar;
+	Islem islem;
 	islem.IslemTipi = "Para Yatırma";
 	islem.Tutar = tutar;
 	struct tm newTime;
 	islem.Tarih = newTime;
-
 	Islemler.push_back(islem);
 }
-string Hesap::ParaCikisi(int tutar, Islem islem) {
+bool Hesap::ParaCikisi(int tutar) {
+	if (this->HesapTutari < tutar)
+		return false;
+	
 	this->HesapTutari -= tutar;
+	Islem islem;
 	islem.IslemTipi = "Para Cekme";
 	islem.Tutar = tutar;
 	struct tm newTime;
 	islem.Tarih = newTime;
-	
 	Islemler.push_back(islem);
+	
+	return true;
 }
 string Hesap::HesapBilgileriGetir() {
-	string temp = "Musteri tc: " + this->TcNumarasi +
-		"\nHesap numarasi: " + this->HesapNumarasi +
+	string temp = "Musteri no: " + to_string(this->MusteriNumarasi)+
+		"\nHesap numarasi: " + to_string(this->HesapNumarasi) +
 		"\nHesap tutari: " + to_string(this->HesapTutari);
 	return temp;
 }
 
-Hesap::Hesap(string tcNumarasi, string hesapNumarasi, string sifre) {
+Hesap::Hesap(int musteriNumarasi, int hesapNumarasi, string sifre) {
 	this->HesapTutari = 0;
-	this->TcNumarasi = tcNumarasi;
+	this->MusteriNumarasi = musteriNumarasi;
 	this->Sifre = sifre;
 	this->HesapNumarasi = hesapNumarasi;
 }
