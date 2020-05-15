@@ -40,4 +40,12 @@ Hesap::Hesap(int musteriNumarasi, int hesapNumarasi, string sifre) {
 	this->MusteriNumarasi = musteriNumarasi;
 	this->Sifre = sifre;
 	this->HesapNumarasi = hesapNumarasi;
+	this->TakmaHesapAdi = "Default";
+}
+Hesap::Hesap(int musteriNumarasi, int hesapNumarasi, string sifre, string takmaHesapAdi) {
+	this->HesapTutari = 0;
+	this->MusteriNumarasi = musteriNumarasi;
+	this->Sifre = sifre;
+	this->HesapNumarasi = hesapNumarasi;
+	this->TakmaHesapAdi = takmaHesapAdi;
 }
