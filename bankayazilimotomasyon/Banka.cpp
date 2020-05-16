@@ -109,3 +109,16 @@ int Banka::HesapIndexiBul(int hesapNumarasi)
 			return i;
 	}
 }
+ vector <Hesap> Banka::MusteriHesaplariniGetir(int musteriNo) {
+	 vector <Hesap> musteriHesaplari;
+	 if (Hesaplar.empty())
+	 {
+		 return musteriHesaplari;
+	 }
+	 for (int i = 0; i < Hesaplar.size() ; i++)
+	 {
+		 if (Hesaplar[i].MusteriNumarasiAl() == musteriNo)
+			 musteriHesaplari.push_back(Hesaplar[i]);
+	 }
+	 return musteriHesaplari;
+}

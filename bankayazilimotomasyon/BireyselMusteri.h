@@ -7,7 +7,7 @@ using namespace std;
 class BireyselMusteri
 {
 protected:
-	int MusteriNo;
+	
 	int Sifre;
 	string Ad;
 	string Soyad;
@@ -16,6 +16,7 @@ protected:
 	string TCNO;
 
 public:
+	int MusteriNo;
 	BireyselMusteri(string ad, string soyad, string telefon, string eposta, string tc, int musteriNo, int sifre);
 	BireyselMusteri(int musteriNo, int sifre);
 	BireyselMusteri(){};

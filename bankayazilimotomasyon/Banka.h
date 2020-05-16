@@ -25,5 +25,6 @@ public:
 	int YeniHesapNumarasi() { return this->sonHesapNumarasi++; };
 	bool BireyselMusteriEkle(BireyselMusteri musteri);
 	bool TicariMusteriEkle(TicariMusteri musteri);
+	vector< Hesap > MusteriHesaplariniGetir(int musteriNo);
 	Banka();
 };

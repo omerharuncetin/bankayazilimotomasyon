@@ -4,7 +4,7 @@
 using namespace std;
 class TicariMusteri {
 protected:
-	int MusteriNo;
+	
 	int Sifre;
 	string Ad;
 	string Soyad;
@@ -24,6 +24,7 @@ public:
 							   string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo);
 
 	string BilgileriniGetir();
+	int MusteriNo;
 };
 
 

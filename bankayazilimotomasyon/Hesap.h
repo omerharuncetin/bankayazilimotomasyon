@@ -16,17 +16,17 @@ protected:
 	string Sifre;
 	string operator<<(int hesapNumarasi);
 	vector <Islem> Islemler;
-	string TakmaHesapAdi;
+	
 	
 
 public:
-	Hesap(int musteriNumarasi, int hesapNumarasi, string sifre);
-	Hesap(int musteriNumarasi, int hesapNumarasi, string sifre, string takmaHesapAdi);
+	Hesap(int musteriNumarasi, int hesapNumarasi);
 	virtual string ParaGirisi(int tutar);
 	int HesapNumarasiAl() { return this->HesapNumarasi; }
 	int HesapTutariAl() { return this->HesapTutari; }
 	int MusteriNumarasiAl() { return this->MusteriNumarasi; }
 	virtual bool ParaCikisi(int tutar);
 	string HesapBilgileriGetir();
+	string TakmaHesapAdi;
 	
 };
