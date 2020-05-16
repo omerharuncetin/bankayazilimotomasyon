@@ -13,7 +13,7 @@ int simdikiMusteriNumarasi = 0;
 
 BireyselMusteri _bireyselMusteri;
 TicariMusteri _ticariMusteri;
-
+string MusteriTipi = "";
 
 bool BireyselMusteriOlustur(string ad, string soyad, string telefon, string eposta, string tcno, int sifre);
 void BireyselMusteriBilgileriAl(string& ad, string& soyad, string& telefon, string& eposta, string& tcno, int& sifre);
@@ -24,6 +24,8 @@ bool TicariMusteriOlustur(string ad, string soyad, string telefon, string eposta
 void YeniHesapOlustur(int musteriNo);
 void IslemSecimi(int hesapNo, int musteriNo);
 
+
+bool GirisYap();
 
 int main()
 {
@@ -39,6 +41,35 @@ int main()
 		switch (secilenDurum)
 		{
 		case 1:
+			if(GirisYap())
+			{
+				if(MusteriTipi == "Bireysel")
+				{
+					vector< Hesap> musteriHesaplari = SuperBank.MusteriHesaplariniGetir(_bireyselMusteri.MusteriNo);
+					int hesapIndexi= 0;
+					for (int i = 0; i < musteriHesaplari.size(); i++)
+					{
+						cout << "-----------------------------------\n" << endl;
+						cout << "Seçmek için " << i << " Giriniz" << endl;
+						cout << musteriHesaplari[i].HesapBilgileriGetir() << endl;
+					}
+					cin >> hesapIndexi;
+					IslemSecimi(musteriHesaplari[hesapIndexi].HesapNumarasiAl(), _bireyselMusteri.MusteriNo);
+				}
+				else
+				{
+					vector< Hesap> musteriHesaplari = SuperBank.MusteriHesaplariniGetir(_ticariMusteri.MusteriNo);
+					int hesapIndexi = 0;
+					for (int i = 0; i < musteriHesaplari.size(); i++)
+					{
+						cout << "-----------------------------------\n" << endl;
+						cout << "Seçmek için " << i << " Giriniz" << endl;
+						cout << musteriHesaplari[i].HesapBilgileriGetir() << endl;
+					}
+					cin >> hesapIndexi;
+					IslemSecimi(musteriHesaplari[hesapIndexi].HesapNumarasiAl(), _ticariMusteri.MusteriNo);
+				}
+			}
 			break;
 		case 2:
 			cout << "Bireysel Müþteri Olmak Ýçin 1 \n Ticari Müþteri Olmak Ýçin 2 Giriniz ";
@@ -61,9 +92,8 @@ int main()
 						MusteriHesaplari = SuperBank.MusteriHesaplariniGetir(_bireyselMusteri.MusteriNo);
 						
 					}
-					Hesap tempHesap = MusteriHesaplari[0];
-					tempHesap.HesapBilgileriGetir();
-					IslemSecimi(tempHesap.HesapNumarasiAl(), _bireyselMusteri.MusteriNo);
+					MusteriHesaplari[0].HesapBilgileriGetir();
+					IslemSecimi(MusteriHesaplari[0].HesapNumarasiAl(), _bireyselMusteri.MusteriNo);
 					
 				}
 				else
@@ -177,13 +207,15 @@ void IslemSecimi(int hesapNo, int musteriNo) {
 		cout << "Para cekmeyi sectiniz." << endl;
 		cout << "Kac Turk Lirasi çekmek istiyorsunuz?";
 		cin >> tutar;
-		SuperBank.HesaptanParaCek(musteriNo, hesapNo, tutar);
-		
+		cout << SuperBank.HesaptanParaCek(musteriNo, hesapNo, tutar) << endl;
+		break;
 	case 2:
 		cout << "Para yatirmayi sectiniz." << endl;
 		cout << "Kac Turk Lirasi yatýrmak istiyorsunuz?";
 		cin >> tutar;
 		SuperBank.HesabaParaYatir(hesapNo, tutar);
+		cout << "Baþarýyla eklendi!" << endl;
+		break;
 	default:
 		break;
 	}
@@ -213,3 +245,56 @@ void YeniHesapOlustur(int musteriNo) {
 	cout << hesap.HesapBilgileriGetir() << endl;
 }
 
+bool GirisYap()
+{
+	int tip = 0;
+	cout << "Bireysel Müþteri Ýçin 1 \nTicari Müþteri Ýçin 2 Yazýnýz" << endl;
+	cin >> tip;
+	int sifre;
+	string tcno;
+	BireyselMusteri bireysel;
+	TicariMusteri ticari;
+	switch (tip)
+	{
+	case 1:
+		cout << "Lütfen Bilgileriniz Giriniz:\n" << endl;
+
+		
+		cout << "TC Kimlik Numaranýzý Giriniz: " << endl;
+		cin >> tcno;
+		cout << "Þifrenizi Giriniz: " << endl;
+		cin >> sifre;
+		bireysel = SuperBank.BireyselMusteriGiris(tcno, sifre);
+		if(bireysel.MusteriNo != 0)
+		{
+			_bireyselMusteri = bireysel;
+			MusteriTipi = "Bireysel";
+			return true;
+		}
+		
+		cout << "Hatalý Giriþ Bilgileri" << endl;
+		return false;
+		
+	case 2:
+		cout << "Lütfen Bilgileriniz Giriniz:\n" << endl;
+
+		
+		cout << "TC Kimlik Numaranýzý Giriniz: " << endl;
+		cin >> tcno;
+		cout << "Þifrenizi Giriniz: " << endl;
+		cin >> sifre;
+		ticari = SuperBank.TicariMusteriGiris(tcno, sifre);
+		if (ticari.MusteriNo != 0)
+		{
+			_ticariMusteri = ticari;
+			MusteriTipi = "Ticari";
+			return true;
+		}
+		
+		cout << "Hatalý Giriþ Bilgileri" << endl;
+		return false;
+		
+	default:
+		return false;
+	}
+}

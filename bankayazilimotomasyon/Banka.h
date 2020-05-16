@@ -13,12 +13,15 @@ private:
 	vector <TicariMusteri> TicariMusteriler;
 	int sonMusteriNumarasi = 1000;
 	int sonHesapNumarasi = 4440;
-	vector< Hesap > MusteriHesaplariniBul(int musteriNo, int hesapNo);
+	vector <int> MusteriHesaplariniBul(int musteriNo, int hesapNo);
 	int HesapIndexiBul(int hesapNumarasi);
 	Hesap HesapBul(int hesapNo);
+	
 public:
 	bool HesapEkle(Hesap hesap);
 	bool HesapSil(int HesapNumarasi);
+	BireyselMusteri BireyselMusteriGiris(string tcno, int sifre);
+	TicariMusteri TicariMusteriGiris(string tcno, int sifre);
 	string HesaptanParaCek(int musteriNo, int hesapNo, int tutar);
 	bool HesabaParaYatir(int hesapNo, int tutar);
 	int YeniMusteriNumarasi() { return this->sonMusteriNumarasi++; };

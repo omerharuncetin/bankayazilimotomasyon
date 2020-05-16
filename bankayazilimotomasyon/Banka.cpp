@@ -32,43 +32,42 @@ bool Banka::TicariMusteriEkle(TicariMusteri musteri)
 
 string Banka::HesaptanParaCek(int musteriNo, int hesapNo, int tutar)
 {
-	Hesap musteriHesabi = HesapBul(hesapNo);
-	vector<Hesap> musteriHesaplari = MusteriHesaplariniBul(musteriNo, hesapNo);
-	int toplamTutar = musteriHesabi.HesapTutariAl();
-	for (int i = 0; i < musteriHesaplari.max_size(); i++)
+	int musteriHesabiYeri = HesapIndexiBul(hesapNo);
+	vector<int> musteriHesaplarininYerleri = MusteriHesaplariniBul(musteriNo, hesapNo);
+	int toplamTutar = Hesaplar[musteriHesabiYeri].HesapTutariAl();
+	for (int i = 0; i < musteriHesaplarininYerleri.size(); i++)
 	{
-		toplamTutar += musteriHesaplari[i].HesapTutariAl();
+		toplamTutar += Hesaplar[musteriHesaplarininYerleri[i]].HesapTutariAl();
 	}
 	if (toplamTutar < tutar)
 		return "Bakiye yetersiz!";
 	
 	string returnString = "---------------------------------------------\n";
-	if(!musteriHesabi.ParaCikisi(tutar))
+	if(!Hesaplar[musteriHesabiYeri].ParaCikisi(tutar))
 	{
-		int kalanTutar = tutar - musteriHesabi.HesapTutariAl();
-		musteriHesabi.ParaCikisi(musteriHesabi.HesapTutariAl());
-		returnString += musteriHesabi.HesapBilgileriGetir();
+		int kalanTutar = tutar - Hesaplar[musteriHesabiYeri].HesapTutariAl();
+		Hesaplar[musteriHesabiYeri].ParaCikisi(Hesaplar[musteriHesabiYeri].HesapTutariAl());
+		returnString += Hesaplar[musteriHesabiYeri].HesapBilgileriGetir();
 		
-		for (int i = 0; i < musteriHesaplari.max_size(); i++)
+		for (int i = 0; i < musteriHesaplarininYerleri.size(); i++)
 		{
-			if(kalanTutar <= musteriHesaplari[i].HesapTutariAl())
+			if(kalanTutar <= Hesaplar[musteriHesaplarininYerleri[i]].HesapTutariAl())
 			{
-				musteriHesaplari[i].ParaCikisi(kalanTutar);
+				Hesaplar[musteriHesaplarininYerleri[i]].ParaCikisi(kalanTutar);
 				returnString += "\n---------------------------------------------";
 				return returnString;
 			}
 				
 			
-			kalanTutar -= musteriHesaplari[i].HesapTutariAl();
-			musteriHesaplari[i].ParaCikisi(musteriHesaplari[i].HesapTutariAl());
-			returnString += musteriHesaplari[i].HesapBilgileriGetir();
+			kalanTutar -= Hesaplar[musteriHesaplarininYerleri[i]].HesapTutariAl();
+			Hesaplar[musteriHesaplarininYerleri[i]].ParaCikisi(Hesaplar[musteriHesaplarininYerleri[i]].HesapTutariAl());
+			returnString += Hesaplar[musteriHesaplarininYerleri[i]].HesapBilgileriGetir();
 			
 		}
 	}
 	else
 	{
-		musteriHesabi.ParaCikisi(musteriHesabi.HesapTutariAl());
-		returnString += musteriHesabi.HesapBilgileriGetir();
+		returnString += Hesaplar[musteriHesabiYeri].HesapBilgileriGetir();
 		returnString += "\n---------------------------------------------";
 		return returnString;
 	}
@@ -76,25 +75,28 @@ string Banka::HesaptanParaCek(int musteriNo, int hesapNo, int tutar)
 
 bool Banka::HesabaParaYatir(int hesapNo, int tutar)
 {
-	Hesap musteriHesabi = HesapBul(hesapNo);
-	musteriHesabi.ParaGirisi(tutar);
+	for (int i = 0; i < Hesaplar.size(); i++)
+	{
+		if (Hesaplar[i].HesapNumarasiAl() == hesapNo)
+			Hesaplar[i].ParaGirisi(tutar);
+	}
 	return true;
 }
 
-vector <Hesap> Banka::MusteriHesaplariniBul(int musteriNo, int hesapNo)
+vector <int> Banka::MusteriHesaplariniBul(int musteriNo, int hesapNo)
 {
-	vector <Hesap> musteriHesaplari;
-	for (int i = 0; i < Hesaplar.max_size(); i++)
+	vector <int> musteriHesaplarininYerleri;
+	for (int i = 0; i < Hesaplar.size(); i++)
 	{
 		if (Hesaplar[i].MusteriNumarasiAl() == musteriNo && Hesaplar[i].HesapNumarasiAl() != hesapNo)
-			musteriHesaplari.push_back(Hesaplar[i]);
+			musteriHesaplarininYerleri.push_back(i);
 	}
-	return musteriHesaplari;
+	return musteriHesaplarininYerleri;
 }
 
 Hesap Banka::HesapBul(int hesapNo)
 {
-	for (int i = 0; i < Hesaplar.max_size(); i++)
+	for (int i = 0; i < Hesaplar.size(); i++)
 	{
 		if(Hesaplar[i].HesapNumarasiAl() == hesapNo)
 			return Hesaplar[i];
@@ -103,7 +105,7 @@ Hesap Banka::HesapBul(int hesapNo)
 
 int Banka::HesapIndexiBul(int hesapNumarasi)
 {
-	for (int i = 0; i < Hesaplar.max_size(); i++)
+	for (int i = 0; i < Hesaplar.size(); i++)
 	{
 		if (Hesaplar[i].HesapNumarasiAl() == hesapNumarasi)
 			return i;
@@ -122,3 +124,26 @@ int Banka::HesapIndexiBul(int hesapNumarasi)
 	 }
 	 return musteriHesaplari;
 }
+
+ BireyselMusteri Banka::BireyselMusteriGiris(string tcno, int sifre)
+ {
+	 for (int i = 0; i < BireyselMusteriler.size(); i++)
+	 {
+		 if (BireyselMusteriler[i].GirisYap(tcno, sifre))
+			 return BireyselMusteriler[i];
+	 }
+	 BireyselMusteri bos;
+	 return bos;
+ }
+
+TicariMusteri Banka::TicariMusteriGiris(string tcno, int sifre)
+{
+	for (int i = 0; i < TicariMusteriler.size(); i++)
+	{
+		if (TicariMusteriler[i].GirisYap(tcno, sifre))
+			return TicariMusteriler[i];
+	}
+	TicariMusteri bos;
+	return bos;
+}
+

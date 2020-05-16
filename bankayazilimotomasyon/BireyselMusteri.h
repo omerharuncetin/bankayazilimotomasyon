@@ -16,7 +16,7 @@ protected:
 	string TCNO;
 
 public:
-	int MusteriNo;
+	int MusteriNo = 0;
 	BireyselMusteri(string ad, string soyad, string telefon, string eposta, string tc, int musteriNo, int sifre);
 	BireyselMusteri(int musteriNo, int sifre);
 	BireyselMusteri(){};
