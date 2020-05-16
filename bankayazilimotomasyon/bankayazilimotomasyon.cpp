@@ -5,9 +5,14 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+#include "BireyselMusteri.h"
+#include "TicariMusteri.h"
+BireyselMusteri;
+TicariMusteri;
 int main()
 {
+	int simdikiHesapNumarasi = 0;
+	
 	struct tm newtime;
 	time_t now = time(0);
 	localtime_s(&newtime, &now);

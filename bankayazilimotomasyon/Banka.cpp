@@ -7,8 +7,10 @@ bool Banka::HesapEkle(Hesap hesap)
 	return true;
 }
 
-bool Banka::HesapSil(int HesapNumarasi)
+bool Banka::HesapSil(int hesapNumarasi)
 {
+	int index = HesapIndexiBul(hesapNumarasi);
+	Hesaplar.erase(Hesaplar.begin() + (index - 1));
 	return true;
 }
 
@@ -96,6 +98,14 @@ Hesap Banka::HesapBul(int hesapNo)
 	{
 		if(Hesaplar[i].HesapNumarasiAl() == hesapNo)
 			return Hesaplar[i];
-		
+	}
+}
+
+int Banka::HesapIndexiBul(int hesapNumarasi)
+{
+	for (int i = 0; i < Hesaplar.max_size(); i++)
+	{
+		if (Hesaplar[i].HesapNumarasiAl() == hesapNumarasi)
+			return i;
 	}
 }

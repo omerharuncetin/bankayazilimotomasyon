@@ -9,12 +9,12 @@ class Banka
 {
 private:
 	vector< Hesap > Hesaplar;
-	vector <int> Deneme;
 	vector <BireyselMusteri> BireyselMusteriler;
 	vector <TicariMusteri> TicariMusteriler;
 	int sonMusteriNumarasi = 1000;
 	int sonHesapNumarasi = 4440;
 	vector< Hesap > MusteriHesaplariniBul(int musteriNo, int hesapNo);
+	int HesapIndexiBul(int hesapNumarasi);
 	Hesap HesapBul(int hesapNo);
 public:
 	bool HesapEkle(Hesap hesap);

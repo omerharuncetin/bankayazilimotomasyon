@@ -1,6 +1,5 @@
 #include "TicariMusteri.h"
 
-
 TicariMusteri::TicariMusteri(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad,
 							 string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo) {
 	this->Ad = ad;
@@ -21,17 +20,12 @@ string TicariMusteri::SirketBilgileriniGetir() {
 }
 
 string TicariMusteri::BilgileriniGetir() {
+	
 	string temp = "Ad : " + this->Ad + " Soyad : " + this->Soyad + 
 				  "\nTelefon: " + this->Telefon + "\nEposta: " + this->Eposta + 
 				  "\nSirket faks numarasi : " + this->SirketFaksNumarasi +
 				  "\nSirket vergi numarasi : " + this->SirketVergiNumarasi;;
-}
-
-string TicariMusteri::ParaCek(int tutar) {
-	//to do;
-}
-string TicariMusteri::ParaYatir(int tutar) {
-	//to do;
+	return temp;
 }
 void TicariMusteri::BilgiGuncelle(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad,
 								  string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo) {

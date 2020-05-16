@@ -7,23 +7,18 @@ using namespace std;
 
 string Hesap::ParaGirisi(int tutar) {
 	this->HesapTutari += tutar;
-	Islem islem;
-	islem.IslemTipi = "Para Yatýrma";
-	islem.Tutar = tutar;
-	struct tm newTime;
-	islem.Tarih = newTime;
+	time_t now = time(0);
+	Islem islem(now, "Para Yatýrma", tutar);
 	Islemler.push_back(islem);
+	return "yatirildi";
 }
 bool Hesap::ParaCikisi(int tutar) {
 	if (this->HesapTutari < tutar)
 		return false;
 
 	this->HesapTutari -= tutar;
-	Islem islem;
-	islem.IslemTipi = "Para Cekme";
-	islem.Tutar = tutar;
-	struct tm newTime;
-	islem.Tarih = newTime;
+	time_t now = time(0);
+	Islem islem(now, "Para Cekme", tutar);
 	Islemler.push_back(islem);
 
 	return true;
