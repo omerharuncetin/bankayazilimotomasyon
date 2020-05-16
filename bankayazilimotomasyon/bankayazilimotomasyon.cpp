@@ -1,31 +1,94 @@
-// bankayazilimotomasyon.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <ctime>
 #include <iostream>
 #include <vector>
+#include "Banka.h"
+#include <string>
+#include <clocale>
 using namespace std;
-#include "BireyselMusteri.h"
-#include "TicariMusteri.h"
-BireyselMusteri;
-TicariMusteri;
+
+Banka SuperBank;
+
+int simdikiHesapNumarasi = 0;
+int simdikiMusteriNumarasi = 0;
+
+BireyselMusteri _bireyselMusteri;
+TicariMusteri _ticariMusteri;
+
+bool BireyselMusteriOlustur(string ad, string soyad, string telefon, string eposta, string tcno, int sifre);
+void BireyselMusteriBilgileriAl(string& ad, string& soyad, string& telefon, string& eposta, string& tcno, int& sifre);
 int main()
 {
-	int simdikiHesapNumarasi = 0;
+	setlocale(LC_ALL, "Turkish");
 	
-	struct tm newtime;
-	time_t now = time(0);
-	localtime_s(&newtime, &now);
-	cout << "Hello izmir!\n" << newtime.tm_mday + 1 << " " << newtime.tm_mon << " " << newtime.tm_year + 1900 <<  endl;
-}	
+	while (true)
+	{
+		cout << "SuperBanka Hoþ Geldiniz!\n Giriþ Yapmak için 1 \n Müþterimiz Olmak Ýçin 2 Yazýnýz" << endl;
+		int secilenDurum;
+		string ad, soyad, telefon, eposta, tcno;
+		int sifre = 0;
+		cin >> secilenDurum;
+		switch (secilenDurum)
+		{
+		case 1:
+			break;
+		case 2:
+			cout << "Bireysel Müþteri Olmak Ýçin 1 \n Ticari Müþteri Olmak Ýçin 2 Giriniz";
+			int secilenDurum2;
+			cin >> secilenDurum;
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+			switch (secilenDurum)
+			{
+			case 1:
+				cout << "Bilgileriniz Giriniz" << endl;
+				BireyselMusteriBilgileriAl(ad, soyad, telefon, eposta, tcno, sifre);
+				if (BireyselMusteriOlustur(ad, soyad, telefon, eposta, tcno, sifre))
+				{
+					cout << "Bilgileriniz" << endl;
+					cout << _bireyselMusteri.BilgileriniGetir() << endl;
+					
+				}
+				else
+				{
+					cout << "Lütfen bilgileri eksiksiz giriniz" << endl;
+				}
+				break;
+			case 2:
+				break;
+			default:
+				cout << "Hata" << endl;
+				break;
+			}
+			break;
+		default:
+			cout << "Hata" << endl;
+			break;
+		}
+	}
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+bool BireyselMusteriOlustur(string ad, string soyad, string telefon, string eposta, string tcno, int sifre)
+{
+	if (ad == "" || soyad == "" || telefon == "" || eposta == "" || tcno == "" || (sifre == 0 && std::to_string(sifre).length() != 4))
+		return false;
+	
+	int musteriNo = SuperBank.YeniHesapNumarasi();
+	BireyselMusteri yeniMusteri(ad, soyad, telefon, eposta, tcno, musteriNo, sifre);
+	_bireyselMusteri = yeniMusteri;
+	return true;
+}
+
+void BireyselMusteriBilgileriAl(string &ad, string &soyad, string &telefon, string &eposta, string &tcno, int &sifre)
+{
+	cout << "Adýnýz: " << endl;
+	cin >> ad;
+	cout << "Soyadýnýz: " << endl;
+	cin >> soyad;
+	cout << "Telefon Numaranýz: " << endl;
+	cin >> telefon;
+	cout << "Eposta Adresiniz: " << endl;
+	cin >> eposta;
+	cout << "TC Kimlik Numaranýz: " << endl;
+	cin >> tcno;
+	cout << "Þifreniz (4 karakter uzunluðunda olmalý ve sadece rakamlardan oluþmalýdýr): " << endl;
+	cin >> sifre;
+}

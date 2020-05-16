@@ -10,6 +10,12 @@ BireyselMusteri::BireyselMusteri(string ad, string soyad, string telefon, string
 	this->Sifre = sifre;
 }
 
+bool BireyselMusteri::GirisYap(string tcno, int sifre)
+{
+	if (this->TCNO == tcno && this->Sifre == sifre)
+		return true;
+	return false;
+}
 
 string BireyselMusteri::BilgileriniGetir()
 {

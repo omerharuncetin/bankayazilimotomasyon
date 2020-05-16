@@ -13,6 +13,13 @@ TicariMusteri::TicariMusteri(string sirketVergiNumarasi, string sirketFaksNumara
 	this->SirketVergiNumarasi = sirketVergiNumarasi;
 }
 
+bool TicariMusteri::GirisYap(string tcno, int sifre)
+{
+	if (this->TCNO == tcno && this->Sifre == sifre)
+		return true;
+	return false;
+}
+
 string TicariMusteri::SirketBilgileriniGetir() {
 	string temp = "Sirket vergi numarasi : " + this->SirketVergiNumarasi + ", " +
 				  "Sirket faks numarasi : " + this->SirketFaksNumarasi;

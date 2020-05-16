@@ -17,7 +17,9 @@ protected:
 public:
 	TicariMusteri(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad, 
 				  string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo);
+	TicariMusteri() {};
 	string SirketBilgileriniGetir();
+	bool GirisYap(string tcno, int sifre);
 	void BilgiGuncelle(string sirketVergiNumarasi, string sirketFaksNumarasi, string ad,
 							   string soyad, string telefon, string eposta, string tcNo, int sifre, int musteriNo);
 

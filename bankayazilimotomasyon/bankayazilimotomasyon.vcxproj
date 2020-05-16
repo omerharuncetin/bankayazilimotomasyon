@@ -142,7 +142,6 @@
     <ClCompile Include="BireyselMusteri.cpp" />
     <ClCompile Include="Hesap.cpp" />
     <ClCompile Include="Islem.cpp" />
-    <ClCompile Include="Test.cpp" />
     <ClCompile Include="TicariMusteri.cpp" />
   </ItemGroup>
   <ItemGroup>
