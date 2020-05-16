@@ -24,16 +24,25 @@ bool Hesap::ParaCikisi(int tutar) {
 	return true;
 }
 string Hesap::HesapBilgileriGetir() {
-	string temp ="Hesap bilgileriniz : \nMusteri no: " + 
+	string temp;
+
+	if (this->TakmaHesapAdi != "")
+	{
+		temp += "Takma hesap adý : " + this->TakmaHesapAdi + "\n";
+	}
+
+	temp += "Hesap bilgileriniz : \nMusteri no: " +
 		to_string(this->MusteriNumarasi) +
 		"\nHesap numarasi: " + to_string(this->HesapNumarasi) +
 		"\nHesap tutari: " + to_string(this->HesapTutari);
+
 	return temp;
 }
 
 Hesap::Hesap(int musteriNumarasi, int hesapNumarasi) {
 	this->HesapTutari = 0;
 	this->MusteriNumarasi = musteriNumarasi;
-	this->HesapNumarasi = hesapNumarasi;	
+	this->HesapNumarasi = hesapNumarasi;
 	this->TakmaHesapAdi = "";
 }
+

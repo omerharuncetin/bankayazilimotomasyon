@@ -16,14 +16,14 @@ private:
 	vector <int> MusteriHesaplariniBul(int musteriNo, int hesapNo);
 	int HesapIndexiBul(int hesapNumarasi);
 	Hesap HesapBul(int hesapNo);
-	
+
 public:
 	bool HesapEkle(Hesap hesap);
 	bool HesapSil(int HesapNumarasi);
 	BireyselMusteri BireyselMusteriGiris(string tcno, int sifre);
 	TicariMusteri TicariMusteriGiris(string tcno, int sifre);
 	string HesaptanParaCek(int musteriNo, int hesapNo, int tutar);
-	bool HesabaParaYatir(int hesapNo, int tutar);
+	string HesabaParaYatir(int hesapNo, int tutar);
 	int YeniMusteriNumarasi() { return this->sonMusteriNumarasi++; };
 	int YeniHesapNumarasi() { return this->sonHesapNumarasi++; };
 	bool BireyselMusteriEkle(BireyselMusteri musteri);

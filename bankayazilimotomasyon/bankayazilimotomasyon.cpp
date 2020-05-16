@@ -22,39 +22,54 @@ void TicariMusteriBilgileriAl(string& ad, string& soyad, string& telefon, string
 bool TicariMusteriOlustur(string ad, string soyad, string telefon, string eposta, string tcno, int sifre, string sirketFaksNo, string sirketVergiNo);
 
 void YeniHesapOlustur(int musteriNo);
-void IslemSecimi(int hesapNo, int musteriNo);
-
+void IslemSecimi(int hesapNo, int musteriNo, string musteriTipi);
 
 bool GirisYap();
+
+void TireEkle();
 
 int main()
 {
 	setlocale(LC_ALL, "Turkish");
-	
+
 	while (true)
 	{
-		cout << "SuperBanka Hoþ Geldiniz!\n Giriþ Yapmak için 1 \n Müþterimiz Olmak Ýçin 2 Yazýnýz" << endl;
+		cout << "SuperBanka Hoþ Geldiniz! \nGiriþ Yapmak için 1 \nMüþterimiz Olmak Ýçin 2 Yazýnýz" << endl;
 		int secilenDurum;
-		string ad = "", soyad = "", telefon = "", eposta = "", tcno = "", sirketVergiNo ="", sirketFaksNo ="";
+		string ad = "", soyad = "", telefon = "", eposta = "", tcno = "", sirketVergiNo = "", sirketFaksNo = "";
 		int sifre = 0;
 		cin >> secilenDurum;
 		switch (secilenDurum)
 		{
 		case 1:
-			if(GirisYap())
+			if (GirisYap())
 			{
-				if(MusteriTipi == "Bireysel")
+				if (MusteriTipi == "Bireysel")
 				{
-					vector< Hesap> musteriHesaplari = SuperBank.MusteriHesaplariniGetir(_bireyselMusteri.MusteriNo);
-					int hesapIndexi= 0;
-					for (int i = 0; i < musteriHesaplari.size(); i++)
+					while (true)
 					{
-						cout << "-----------------------------------\n" << endl;
-						cout << "Seçmek için " << i << " Giriniz" << endl;
-						cout << musteriHesaplari[i].HesapBilgileriGetir() << endl;
+						vector< Hesap> musteriHesaplari = SuperBank.MusteriHesaplariniGetir(_bireyselMusteri.MusteriNo);
+						int hesapIndexi = 0;
+
+						for (int i = 0; i < musteriHesaplari.size(); i++)
+						{
+							TireEkle();
+							cout << "Bu hesabý seçmek için " << i << " giriniz" << endl;
+							cout << musteriHesaplari[i].HesapBilgileriGetir() << endl;
+						}
+						cout << "Yeni hesap açmak için -1(eksi bir) yazýnýz." << endl;
+						cin >> hesapIndexi;
+						if (hesapIndexi == -1) {
+							TireEkle();
+							YeniHesapOlustur(_bireyselMusteri.MusteriNo);
+						}
+						else
+						{
+							TireEkle();
+							IslemSecimi(musteriHesaplari[hesapIndexi].HesapNumarasiAl(), _bireyselMusteri.MusteriNo, MusteriTipi);
+							break;
+						}
 					}
-					cin >> hesapIndexi;
-					IslemSecimi(musteriHesaplari[hesapIndexi].HesapNumarasiAl(), _bireyselMusteri.MusteriNo);
 				}
 				else
 				{
@@ -62,17 +77,27 @@ int main()
 					int hesapIndexi = 0;
 					for (int i = 0; i < musteriHesaplari.size(); i++)
 					{
-						cout << "-----------------------------------\n" << endl;
+						TireEkle();
 						cout << "Seçmek için " << i << " Giriniz" << endl;
 						cout << musteriHesaplari[i].HesapBilgileriGetir() << endl;
 					}
+					cout << "Yeni hesap açmak için -1(eksi bir) yazýnýz." << endl;
 					cin >> hesapIndexi;
-					IslemSecimi(musteriHesaplari[hesapIndexi].HesapNumarasiAl(), _ticariMusteri.MusteriNo);
+					if (hesapIndexi == -1) {
+						TireEkle();
+						YeniHesapOlustur(_ticariMusteri.MusteriNo);
+					}
+					else
+					{
+						TireEkle();
+						IslemSecimi(musteriHesaplari[hesapIndexi].HesapNumarasiAl(), _ticariMusteri.MusteriNo, "no");
+						break;
+					}
 				}
 			}
 			break;
 		case 2:
-			cout << "Bireysel Müþteri Olmak Ýçin 1 \n Ticari Müþteri Olmak Ýçin 2 Giriniz ";
+			cout << "Bireysel Müþteri Olmak Ýçin 1 \nTicari Müþteri Olmak Ýçin 2 Giriniz " << endl;
 			int secilenDurum2;
 			cin >> secilenDurum;
 
@@ -83,18 +108,20 @@ int main()
 				BireyselMusteriBilgileriAl(ad, soyad, telefon, eposta, tcno, sifre);
 				if (BireyselMusteriOlustur(ad, soyad, telefon, eposta, tcno, sifre))
 				{
+					TireEkle();
 					cout << "Bilgileriniz" << endl;
 					cout << _bireyselMusteri.BilgileriniGetir() << endl;
 					vector <Hesap> MusteriHesaplari = SuperBank.MusteriHesaplariniGetir(_bireyselMusteri.MusteriNo);
 					if (MusteriHesaplari.empty())
 					{
+						TireEkle();
 						YeniHesapOlustur(_bireyselMusteri.MusteriNo);
 						MusteriHesaplari = SuperBank.MusteriHesaplariniGetir(_bireyselMusteri.MusteriNo);
-						
 					}
+					TireEkle();
 					MusteriHesaplari[0].HesapBilgileriGetir();
-					IslemSecimi(MusteriHesaplari[0].HesapNumarasiAl(), _bireyselMusteri.MusteriNo);
-					
+					TireEkle();
+					IslemSecimi(MusteriHesaplari[0].HesapNumarasiAl(), _bireyselMusteri.MusteriNo, "Bireysel");
 				}
 				else
 				{
@@ -106,29 +133,38 @@ int main()
 				TicariMusteriBilgileriAl(ad, soyad, telefon, eposta, tcno, sifre, sirketFaksNo, sirketVergiNo);
 				if (TicariMusteriOlustur(ad, soyad, telefon, eposta, tcno, sifre, sirketFaksNo, sirketVergiNo))
 				{
+					TireEkle();
 					cout << "Bilgileriniz" << endl;
 					cout << _ticariMusteri.BilgileriniGetir() << endl;
 					vector <Hesap> MusteriHesaplari = SuperBank.MusteriHesaplariniGetir(_ticariMusteri.MusteriNo);
 					if (MusteriHesaplari.empty())
 					{
+						TireEkle();
 						YeniHesapOlustur(_ticariMusteri.MusteriNo);
-
+						MusteriHesaplari = SuperBank.MusteriHesaplariniGetir(_ticariMusteri.MusteriNo);
 					}
-					//IslemSecimi();
-
+					MusteriHesaplari[0].HesapBilgileriGetir();
+					TireEkle();
+					IslemSecimi(MusteriHesaplari[0].HesapNumarasiAl(), _ticariMusteri.MusteriNo, "no");
 				}
 				else
 				{
-					cout << "Lütfen bilgileri eksiksiz giriniz" << endl;
+					TireEkle();
+					cout << "Lütfen bilgileri eksiksiz giriniz!!!" << endl;
+					TireEkle();
 				}
 				break;
 			default:
+				TireEkle();
 				cout << "Hata" << endl;
+				TireEkle();
 				break;
 			}
 			break;
 		default:
+			TireEkle();
 			cout << "Hata" << endl;
+			TireEkle();
 			break;
 		}
 	}
@@ -138,14 +174,14 @@ bool BireyselMusteriOlustur(string ad, string soyad, string telefon, string epos
 {
 	if (ad == "" || soyad == "" || telefon == "" || eposta == "" || tcno == "" || (sifre == 0 && std::to_string(sifre).length() != 4))
 		return false;
-	
+
 	int musteriNo = SuperBank.YeniMusteriNumarasi();
 	BireyselMusteri yeniMusteri(ad, soyad, telefon, eposta, tcno, musteriNo, sifre);
 	_bireyselMusteri = yeniMusteri;
 	SuperBank.BireyselMusteriEkle(yeniMusteri);
 	return true;
 }
-void BireyselMusteriBilgileriAl(string &ad, string &soyad, string &telefon, string &eposta, string &tcno, int &sifre)
+void BireyselMusteriBilgileriAl(string& ad, string& soyad, string& telefon, string& eposta, string& tcno, int& sifre)
 {
 	cout << "Adýnýz: " << endl;
 	cin >> ad;
@@ -167,7 +203,7 @@ bool TicariMusteriOlustur(string ad, string soyad, string telefon, string eposta
 		return false;
 
 	int musteriNo = SuperBank.YeniMusteriNumarasi();
-	TicariMusteri yeniMusteri(sirketVergiNo, sirketFaksNo,ad, soyad, telefon, eposta, tcno, sifre, musteriNo);
+	TicariMusteri yeniMusteri(sirketVergiNo, sirketFaksNo, ad, soyad, telefon, eposta, tcno, sifre, musteriNo);
 	_ticariMusteri = yeniMusteri;
 	SuperBank.TicariMusteriEkle(yeniMusteri);
 	return true;
@@ -190,36 +226,52 @@ void TicariMusteriBilgileriAl(string& ad, string& soyad, string& telefon, string
 	cin >> sirketFaksNo;
 	cout << "Sirketinizin Vergi Numarasi: " << endl;
 	cin >> sirketVergiNo;
-
 }
 
-void IslemSecimi(int hesapNo, int musteriNo) {
+void IslemSecimi(int hesapNo, int musteriNo, string musteriTipi) {
 	int secilenIslem;
 	int tutar;
+	int devamKontrolu;
 
-	cout << "Hangi islemi yapmak istersiniz?" << endl;
-	cout << "Para cekmek icin 1, para yatýrmak icin 2 yazýn." << endl;
-	cin >> secilenIslem;
-
-	switch (secilenIslem)
+	do
 	{
-	case 1:
-		cout << "Para cekmeyi sectiniz." << endl;
-		cout << "Kac Turk Lirasi çekmek istiyorsunuz?";
-		cin >> tutar;
-		cout << SuperBank.HesaptanParaCek(musteriNo, hesapNo, tutar) << endl;
-		break;
-	case 2:
-		cout << "Para yatirmayi sectiniz." << endl;
-		cout << "Kac Turk Lirasi yatýrmak istiyorsunuz?";
-		cin >> tutar;
-		SuperBank.HesabaParaYatir(hesapNo, tutar);
-		cout << "Baþarýyla eklendi!" << endl;
-		break;
-	default:
-		break;
-	}
+		devamKontrolu = 0;
+		cout << "Hangi islemi yapmak istersiniz?" << endl;
+		cout << "Para cekmek icin 1, para yatýrmak icin 2 yazýn." << endl;
+		cin >> secilenIslem;
 
+		switch (secilenIslem)
+		{
+		case 1:
+			cout << "Para cekmeyi sectiniz." << endl;
+			cout << "Kac Turk Lirasi çekmek istiyorsunuz?" << endl;
+			cin >> tutar;
+			if (musteriTipi == "Bireysel" && tutar > 2000)
+			{
+				TireEkle();
+				cout << "Bireysel müsterilerin limiti 2000 Türk Lirasý ile sýnýrlýdýr.";
+				TireEkle();
+				break;
+			}
+			TireEkle();
+			cout << SuperBank.HesaptanParaCek(musteriNo, hesapNo, tutar) << endl;
+			break;
+		case 2:
+			cout << "Para yatirmayi sectiniz." << endl;
+			cout << "Kac Turk Lirasi yatýrmak istiyorsunuz?" << endl;
+			cin >> tutar;
+			TireEkle();
+			cout << SuperBank.HesabaParaYatir(hesapNo, tutar) << endl;
+			cout << "Baþarýyla eklendi!" << endl;
+			break;
+		default:
+			break;
+		}
+		cout << "Ýslem yapmaya devam etmek icin 1 yazýn." << endl;
+		cout << "Çýkmak icin 0 yazýn." << endl;
+		TireEkle();
+		cin >> devamKontrolu;
+	} while (devamKontrolu == 1);
 }
 void YeniHesapOlustur(int musteriNo) {
 	int karar;
@@ -239,7 +291,7 @@ void YeniHesapOlustur(int musteriNo) {
 	default:
 		break;
 	}
-	
+
 	SuperBank.HesapEkle(hesap);
 
 	cout << hesap.HesapBilgileriGetir() << endl;
@@ -259,26 +311,24 @@ bool GirisYap()
 	case 1:
 		cout << "Lütfen Bilgileriniz Giriniz:\n" << endl;
 
-		
 		cout << "TC Kimlik Numaranýzý Giriniz: " << endl;
 		cin >> tcno;
 		cout << "Þifrenizi Giriniz: " << endl;
 		cin >> sifre;
 		bireysel = SuperBank.BireyselMusteriGiris(tcno, sifre);
-		if(bireysel.MusteriNo != 0)
+		if (bireysel.MusteriNo != 0)
 		{
 			_bireyselMusteri = bireysel;
 			MusteriTipi = "Bireysel";
 			return true;
 		}
-		
+
 		cout << "Hatalý Giriþ Bilgileri" << endl;
 		return false;
-		
+
 	case 2:
 		cout << "Lütfen Bilgileriniz Giriniz:\n" << endl;
 
-		
 		cout << "TC Kimlik Numaranýzý Giriniz: " << endl;
 		cin >> tcno;
 		cout << "Þifrenizi Giriniz: " << endl;
@@ -290,11 +340,15 @@ bool GirisYap()
 			MusteriTipi = "Ticari";
 			return true;
 		}
-		
+
 		cout << "Hatalý Giriþ Bilgileri" << endl;
 		return false;
-		
+
 	default:
 		return false;
 	}
+}
+
+void TireEkle() {
+	cout << "----------------------------\n";
 }
