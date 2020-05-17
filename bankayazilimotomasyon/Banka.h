@@ -29,6 +29,6 @@ public:
 	bool BireyselMusteriEkle(BireyselMusteri musteri);
 	bool TicariMusteriEkle(TicariMusteri musteri);
 	vector< Hesap > MusteriHesaplariniGetir(int musteriNo);
-	string HesapIslemleriniGetir(int hesapNo, time_t tarih1, time_t tarih2);
+	string HesapIslemleriniGetir(int hesapNo, struct tm tarih1, struct tm tarih2);
 	Banka();
 };

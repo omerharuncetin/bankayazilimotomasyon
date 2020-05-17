@@ -97,6 +97,11 @@ int main()
 					}
 				}
 			}
+			else
+			{
+				cout << "Giriş bilgileri hatalı!" << endl;
+				break;
+			}
 			break;
 		case 2:
 			cout << "Bireysel Müşteri Olmak İçin 1 \nTicari Müşteri Olmak İçin 2 Giriniz " << endl;
@@ -165,8 +170,7 @@ int main()
 			break;
 		default:
 			TireEkle();
-			cout << "Hata" << endl;
-			TireEkle();
+			cout << "Hatalı giriş" << endl;
 			break;
 		}
 	}
@@ -268,6 +272,7 @@ void IslemSecimi(int hesapNo, int musteriNo, string musteriTipi) {
 			break;
 		case 3:
 			cout << IslemleriYazdir(hesapNo) << endl;
+			TireEkle();
 			break;
 		default:
 			break;
@@ -364,22 +369,19 @@ string IslemleriYazdir(int hesapNo)
 	string tarih1, tarih2;
 	struct tm ilkTarih, ikinciTarih;
 
-	cout << "Lütfen Birinci tarihi giriniz (Tarih formatı Gün/Ay/YılTSaat:Dakika:Saniye şeklinde olmalıdır Örnek: 01/01/2020T14:24:56" << endl;
+	cout << "Lütfen Birinci tarihi giriniz (Tarih formatı Gün/Ay/Yıl şeklinde olmalıdır Örnek: 01/01/2020)" << endl;
 	cin >> tarih1;
 	
 	gun = stoi(tarih1.substr(0, 2));
 	ay = stoi(tarih1.substr(3, 2));
 	yil = stoi(tarih1.substr(6, 4));
-	saat = stoi(tarih1.substr(11, 2));
-	dakika = stoi(tarih1.substr(14, 2));
-	saniye = stoi(tarih1.substr(17, 2));
 	
 	ilkTarih.tm_mday = gun;
-	ilkTarih.tm_mon = ay;
+	ilkTarih.tm_mon = ay - 1;
 	ilkTarih.tm_year = yil - 1900;
-	ilkTarih.tm_hour = saat;
-	ilkTarih.tm_min = dakika;
-	ilkTarih.tm_sec = saniye;
+	ilkTarih.tm_hour = 1;
+	ilkTarih.tm_min = 1;
+	ilkTarih.tm_sec = 1;
 	
 	cout << "İkinci Tarihi giriniz (Aynı Formatta)" << endl;
 	
@@ -387,20 +389,13 @@ string IslemleriYazdir(int hesapNo)
 	gun = stoi(tarih2.substr(0, 2));
 	ay = stoi(tarih2.substr(3, 2));
 	yil = stoi(tarih2.substr(6, 4));
-	saat = stoi(tarih2.substr(11, 2));
-	dakika = stoi(tarih2.substr(14, 2));
-	saniye = stoi(tarih2.substr(17, 2));
 
 	ikinciTarih.tm_mday = gun;
-	ikinciTarih.tm_mon = ay;
+	ikinciTarih.tm_mon = ay - 1;
 	ikinciTarih.tm_year = yil - 1900;
-	ikinciTarih.tm_hour = saat;
-	ikinciTarih.tm_min = dakika;
-	ikinciTarih.tm_sec = saniye;
-	
+	ikinciTarih.tm_hour = 1;
+	ikinciTarih.tm_min = 1;
+	ikinciTarih.tm_sec = 1;
 
-	time_t milliseconds1 = mktime(&ilkTarih);
-	time_t milliseconds2 = mktime(&ikinciTarih);
-
-	return SuperBank.HesapIslemleriniGetir(hesapNo, milliseconds1, milliseconds2);
+	return SuperBank.HesapIslemleriniGetir(hesapNo, ilkTarih, ikinciTarih);
 }

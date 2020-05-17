@@ -45,13 +45,16 @@ ostream& operator<<(ostream& os, const time_t dt)
 	return os;
 }
 
-string Hesap::TarihlereGoreIslemleriGetir(time_t tarih1, time_t tarih2)
+string Hesap::TarihlereGoreIslemleriGetir(struct tm tarih1, struct tm tarih2)
 {
 	string islemler = "";
 	for (int i = 0; i < Islemler.size(); i++)
 	{
-		if (Islemler[i].milliseconds >= tarih1 && Islemler[i].milliseconds <= tarih2)
+		if (Islemler[i].TarihKiyasla(tarih1,tarih2))
+		{
+			islemler += "\n-------------------------------------\n";
 			islemler += Islemler[i].IslemBilgileriniDondur();
+		}
 	}
 	return islemler;
 }

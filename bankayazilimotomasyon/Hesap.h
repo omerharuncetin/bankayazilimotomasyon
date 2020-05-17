@@ -24,7 +24,7 @@ public:
 	int HesapTutariAl() { return this->HesapTutari; }
 	int MusteriNumarasiAl() { return this->MusteriNumarasi; }
 	virtual bool ParaCikisi(int tutar);
-	string TarihlereGoreIslemleriGetir(time_t tarih1, time_t tarih2);
+	string TarihlereGoreIslemleriGetir(struct tm tarih1, struct tm tarih2);
 	string HesapBilgileriGetir();
 	string TakmaHesapAdi = "";
 };

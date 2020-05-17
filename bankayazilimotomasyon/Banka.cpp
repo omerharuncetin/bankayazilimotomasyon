@@ -11,7 +11,7 @@ bool Banka::HesapEkle(Hesap hesap)
 	return true;
 }
 
-string Banka::HesapIslemleriniGetir(int hesapNo, time_t tarih1, time_t tarih2)
+string Banka::HesapIslemleriniGetir(int hesapNo, struct tm tarih1, struct tm tarih2)
 {
 	Hesap hesap = HesapBul(hesapNo);
 	return hesap.TarihlereGoreIslemleriGetir(tarih1, tarih2);

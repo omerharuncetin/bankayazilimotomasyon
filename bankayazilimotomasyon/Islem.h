@@ -12,4 +12,5 @@ public:
 	Islem(time_t milliseconds, string islemTipi, int tutar);
 	string TarihDondur();
 	string IslemBilgileriniDondur();
+	bool TarihKiyasla(struct tm tarih1, struct tm tarih2);
 };
