@@ -330,6 +330,10 @@ bool GirisYap()
 		cin >> tcno;
 		cout << "Þifrenizi Giriniz: " << endl;
 		cin >> sifre;
+		if (typeid(tcno).name() != "int" || typeid(sifre).name() != "int") {
+			return false;
+		}
+
 		bireysel = SuperBank.BireyselMusteriGiris(tcno, sifre);
 		if (bireysel.MusteriNo != 0)
 		{
