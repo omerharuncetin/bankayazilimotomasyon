@@ -142,6 +142,7 @@
     <ClCompile Include="BireyselMusteri.cpp" />
     <ClCompile Include="Hesap.cpp" />
     <ClCompile Include="Islem.cpp" />
+    <ClCompile Include="Musteri.cpp" />
     <ClCompile Include="TicariMusteri.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="BireyselMusteri.h" />
     <ClInclude Include="Hesap.h" />
     <ClInclude Include="Islem.h" />
+    <ClInclude Include="Musteri.h" />
     <ClInclude Include="TicariMusteri.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

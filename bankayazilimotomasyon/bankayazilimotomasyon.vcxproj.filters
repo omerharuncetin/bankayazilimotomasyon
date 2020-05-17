@@ -33,6 +33,9 @@
     <ClCompile Include="Islem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Musteri.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Banka.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Islem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Musteri.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

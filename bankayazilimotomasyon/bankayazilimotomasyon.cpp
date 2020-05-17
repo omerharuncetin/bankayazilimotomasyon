@@ -54,11 +54,12 @@ int main()
 					{
 						vector< Hesap> musteriHesaplari = SuperBank.MusteriHesaplariniGetir(_bireyselMusteri.MusteriNo);
 						int hesapIndexi = 0;
-
+						TireEkle();
+						cout << "\t\tMÜÞTERÝ HESAPLARINIZ" << endl;
 						for (int i = 0; i < musteriHesaplari.size(); i++)
 						{
 							TireEkle();
-							cout << "Bu hesabý seçmek için " << i << " giriniz" << endl;
+							cout << "Aþaðýda bilgileri verilen hesabý seçmek için " << i << " yazýnýz" << endl;
 							cout << musteriHesaplari[i] << endl; // OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING
 						}
 						cout << "Yeni hesap açmak için -1(eksi bir) yazýnýz." << endl;
@@ -79,6 +80,8 @@ int main()
 				{
 					vector< Hesap> musteriHesaplari = SuperBank.MusteriHesaplariniGetir(_ticariMusteri.MusteriNo);
 					int hesapIndexi = 0;
+					TireEkle();
+					cout << "\t\tMÜÞTERÝ HESAPLARINIZ" << endl;
 					for (int i = 0; i < musteriHesaplari.size(); i++)
 					{
 						TireEkle();
@@ -362,7 +365,7 @@ bool GirisYap()
 }
 
 void TireEkle() {
-	cout << "----------------------------\n";
+	cout << "-----------------------------------------------------------\n";
 }
 
 string IslemleriYazdir(int hesapNo)
