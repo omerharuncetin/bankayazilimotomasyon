@@ -2,6 +2,8 @@
 #include <string>
 #include "Hesap.h"
 
+
+
 using namespace std;
 class BireyselMusteri
 {
@@ -24,4 +26,5 @@ public:
 	string BilgiGuncelle(string ad, string soyad, string telefon, string eposta, string tc);
 	string TCNOGetir() { return this->TCNO; }
 	~BireyselMusteri();
+	
 };

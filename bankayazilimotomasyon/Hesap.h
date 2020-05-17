@@ -14,7 +14,7 @@ protected:
 	int HesapTutari;
 	int IslemTutari;
 	string Sifre;
-	friend ostream& operator<<(ostream& os, time_t dt);
+	friend ostream& operator<<(ostream& os, Hesap hesap);
 	vector <Islem> Islemler;
 
 public:
@@ -27,4 +27,5 @@ public:
 	string TarihlereGoreIslemleriGetir(struct tm tarih1, struct tm tarih2);
 	string HesapBilgileriGetir();
 	string TakmaHesapAdi = "";
+	Hesap() {};
 };

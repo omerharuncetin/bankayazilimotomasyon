@@ -32,6 +32,7 @@ BireyselMusteri::BireyselMusteri(int musteriNo, int sifre)
 BireyselMusteri::~BireyselMusteri()
 {
 }
+
 string BireyselMusteri::BilgiGuncelle(string ad, string soyad, string telefon, string eposta, string tc)
 {
 	this->Ad = ad;

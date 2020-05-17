@@ -4,6 +4,7 @@
 #include "Banka.h"
 #include <string>
 #include <clocale>
+
 using namespace std;
 
 Banka SuperBank;
@@ -33,6 +34,7 @@ int main()
 {
 	setlocale(LC_ALL, "Turkish");
 
+
 	while (true)
 	{
 		TireEkle();
@@ -57,7 +59,7 @@ int main()
 						{
 							TireEkle();
 							cout << "Bu hesabý seçmek için " << i << " giriniz" << endl;
-							cout << musteriHesaplari[i].HesapBilgileriGetir() << endl;
+							cout << musteriHesaplari[i] << endl; // OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING
 						}
 						cout << "Yeni hesap açmak için -1(eksi bir) yazýnýz." << endl;
 						cin >> hesapIndexi;
@@ -81,7 +83,7 @@ int main()
 					{
 						TireEkle();
 						cout << "Seçmek için " << i << " Giriniz" << endl;
-						cout << musteriHesaplari[i].HesapBilgileriGetir() << endl;
+						cout << musteriHesaplari[i] << endl; // OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING OPERATOR OVERLOADING
 					}
 					cout << "Yeni hesap açmak için -1(eksi bir) yazýnýz." << endl;
 					cin >> hesapIndexi;
@@ -371,20 +373,20 @@ string IslemleriYazdir(int hesapNo)
 
 	cout << "Lütfen Birinci tarihi giriniz (Tarih formatý Gün/Ay/Yýl þeklinde olmalýdýr Örnek: 01/01/2020)" << endl;
 	cin >> tarih1;
-	
+
 	gun = stoi(tarih1.substr(0, 2));
 	ay = stoi(tarih1.substr(3, 2));
 	yil = stoi(tarih1.substr(6, 4));
-	
+
 	ilkTarih.tm_mday = gun;
 	ilkTarih.tm_mon = ay - 1;
 	ilkTarih.tm_year = yil - 1900;
 	ilkTarih.tm_hour = 1;
 	ilkTarih.tm_min = 1;
 	ilkTarih.tm_sec = 1;
-	
+
 	cout << "Ýkinci Tarihi giriniz (Ayný Formatta)" << endl;
-	
+
 	cin >> tarih2;
 	gun = stoi(tarih2.substr(0, 2));
 	ay = stoi(tarih2.substr(3, 2));

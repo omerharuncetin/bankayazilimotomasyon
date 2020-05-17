@@ -39,9 +39,8 @@ string Hesap::HesapBilgileriGetir() {
 	return temp;
 }
 
-ostream& operator<<(ostream& os, const time_t dt)
-{
-	os << std::to_string(dt);
+ostream& operator<<(ostream& os, Hesap hesap) {
+	os << hesap.HesapBilgileriGetir();
 	return os;
 }
 
@@ -50,7 +49,7 @@ string Hesap::TarihlereGoreIslemleriGetir(struct tm tarih1, struct tm tarih2)
 	string islemler = "";
 	for (int i = 0; i < Islemler.size(); i++)
 	{
-		if (Islemler[i].TarihKiyasla(tarih1,tarih2))
+		if (Islemler[i].TarihKiyasla(tarih1, tarih2))
 		{
 			islemler += "\n-------------------------------------\n";
 			islemler += Islemler[i].IslemBilgileriniDondur();
@@ -58,7 +57,6 @@ string Hesap::TarihlereGoreIslemleriGetir(struct tm tarih1, struct tm tarih2)
 	}
 	return islemler;
 }
-
 
 Hesap::Hesap(int musteriNumarasi, int hesapNumarasi) {
 	this->HesapTutari = 0;

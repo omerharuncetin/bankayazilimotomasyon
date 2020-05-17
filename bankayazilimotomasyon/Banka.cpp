@@ -17,7 +17,6 @@ string Banka::HesapIslemleriniGetir(int hesapNo, struct tm tarih1, struct tm tar
 	return hesap.TarihlereGoreIslemleriGetir(tarih1, tarih2);
 }
 
-
 bool Banka::HesapSil(int hesapNumarasi)
 {
 	int index = HesapIndexiBul(hesapNumarasi);
