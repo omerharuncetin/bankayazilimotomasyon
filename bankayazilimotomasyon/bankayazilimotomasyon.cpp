@@ -104,7 +104,6 @@ int main()
 			}
 			else
 			{
-				cout << "Giriş bilgileri hatalı!" << endl;
 				break;
 			}
 			break;
@@ -341,6 +340,7 @@ bool GirisYap()
 
 		cout << "Hatalı Giriş Bilgileri" << endl;
 		return false;
+		
 
 	case 2:
 		cout << "Lütfen Bilgileriniz Giriniz:\n" << endl;
