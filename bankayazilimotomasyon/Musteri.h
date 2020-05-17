@@ -16,5 +16,3 @@ public:
 	virtual bool GirisYap(string tcno, int sifre) = 0;
 	virtual string BilgileriniGetir() = 0;
 };
-
-

@@ -34,7 +34,6 @@ int main()
 {
 	setlocale(LC_ALL, "Turkish");
 
-
 	while (true)
 	{
 		TireEkle();
@@ -104,6 +103,7 @@ int main()
 			}
 			else
 			{
+				secilenDurum = NULL;
 				break;
 			}
 			break;
@@ -324,8 +324,8 @@ bool GirisYap()
 	switch (tip)
 	{
 	case 1:
-		cout << "Lütfen Bilgileriniz Giriniz:\n" << endl;
-
+		TireEkle();
+		cout << "Lütfen Bilgileriniz Giriniz:" << endl;
 		cout << "TC Kimlik Numaranýzý Giriniz: " << endl;
 		cin >> tcno;
 		cout << "Þifrenizi Giriniz: " << endl;
@@ -340,7 +340,6 @@ bool GirisYap()
 
 		cout << "Hatalý Giriþ Bilgileri" << endl;
 		return false;
-		
 
 	case 2:
 		cout << "Lütfen Bilgileriniz Giriniz:\n" << endl;

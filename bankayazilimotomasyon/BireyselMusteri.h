@@ -3,7 +3,6 @@
 #include "Hesap.h"
 #include "Musteri.h"
 
-
 using namespace std;
 class BireyselMusteri : public Musteri
 {
@@ -16,5 +15,4 @@ public:
 	string BilgiGuncelle(string ad, string soyad, string telefon, string eposta, string tc);
 	string TCNOGetir() { return this->TCNO; }
 	~BireyselMusteri();
-	
 };
