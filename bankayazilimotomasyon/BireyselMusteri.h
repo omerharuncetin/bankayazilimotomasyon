@@ -7,17 +7,7 @@
 using namespace std;
 class BireyselMusteri : public Musteri
 {
-protected:
-
-	/*int Sifre;
-	string Ad;
-	string Soyad;
-	string Telefon;
-	string Eposta;
-	string TCNO;*/
-
 public:
-	//int MusteriNo = 0;
 	BireyselMusteri(string ad, string soyad, string telefon, string eposta, string tc, int musteriNo, int sifre);
 	BireyselMusteri(int musteriNo, int sifre);
 	BireyselMusteri() {};

@@ -137,7 +137,7 @@ int main()
 				}
 				else
 				{
-					cout << "Lütfen bilgileri eksiksiz giriniz" << endl;
+					cout << "Lütfen bilgileri eksiksiz ve doðru bir þekilde giriniz!" << endl;
 				}
 				break;
 			case 2:
@@ -162,7 +162,7 @@ int main()
 				else
 				{
 					TireEkle();
-					cout << "Lütfen bilgileri eksiksiz giriniz!!!" << endl;
+					cout << "Lütfen bilgileri eksiksiz ve doðru bir þekilde giriniz!" << endl;
 					TireEkle();
 				}
 				break;
@@ -183,7 +183,7 @@ int main()
 
 bool BireyselMusteriOlustur(string ad, string soyad, string telefon, string eposta, string tcno, int sifre)
 {
-	if (ad == "" || soyad == "" || telefon == "" || eposta == "" || tcno == "" || (sifre == 0 && std::to_string(sifre).length() != 4))
+	if (ad == "" || soyad == "" || telefon == "" || eposta == "" || tcno == "" || (sifre == 0 || std::to_string(sifre).length() != 4))
 		return false;
 
 	int musteriNo = SuperBank.YeniMusteriNumarasi();
@@ -210,7 +210,7 @@ void BireyselMusteriBilgileriAl(string& ad, string& soyad, string& telefon, stri
 
 bool TicariMusteriOlustur(string ad, string soyad, string telefon, string eposta, string tcno, int sifre, string sirketFaksNo, string sirketVergiNo)
 {
-	if (ad == "" || soyad == "" || telefon == "" || eposta == "" || tcno == "" || (sifre == 0 && std::to_string(sifre).length() != 4) || sirketFaksNo == "" || sirketVergiNo == "")
+	if (ad == "" || soyad == "" || telefon == "" || eposta == "" || tcno == "" || (sifre == 0 || std::to_string(sifre).length() != 4) || sirketFaksNo == "" || sirketVergiNo == "")
 		return false;
 
 	int musteriNo = SuperBank.YeniMusteriNumarasi();
@@ -288,6 +288,7 @@ void IslemSecimi(int hesapNo, int musteriNo, string musteriTipi) {
 		cin >> devamKontrolu;
 	} while (devamKontrolu == 1);
 }
+
 void YeniHesapOlustur(int musteriNo) {
 	int karar;
 	string takmaAd;
