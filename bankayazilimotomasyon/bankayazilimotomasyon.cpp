@@ -27,6 +27,7 @@ void IslemSecimi(int hesapNo, int musteriNo, string musteriTipi);
 bool GirisYap();
 
 void TireEkle();
+string IslemleriYazdir(int hesapNo);
 
 int main()
 {
@@ -34,6 +35,7 @@ int main()
 
 	while (true)
 	{
+		TireEkle();
 		cout << "SuperBanka Hoþ Geldiniz! \nGiriþ Yapmak için 1 \nMüþterimiz Olmak Ýçin 2 Yazýnýz" << endl;
 		int secilenDurum;
 		string ad = "", soyad = "", telefon = "", eposta = "", tcno = "", sirketVergiNo = "", sirketFaksNo = "";
@@ -232,12 +234,12 @@ void IslemSecimi(int hesapNo, int musteriNo, string musteriTipi) {
 	int secilenIslem;
 	int tutar;
 	int devamKontrolu;
-
+	string tarih1, tarih2;
 	do
 	{
 		devamKontrolu = 0;
 		cout << "Hangi islemi yapmak istersiniz?" << endl;
-		cout << "Para cekmek icin 1, para yatýrmak icin 2 yazýn." << endl;
+		cout << "Para cekmek icin 1, para yatýrmak icin 2 , gireceðiniz tarihler arasýndaki hesap özetinizi görmek için 3 yazýn." << endl;
 		cin >> secilenIslem;
 
 		switch (secilenIslem)
@@ -263,6 +265,9 @@ void IslemSecimi(int hesapNo, int musteriNo, string musteriTipi) {
 			TireEkle();
 			cout << SuperBank.HesabaParaYatir(hesapNo, tutar) << endl;
 			cout << "Baþarýyla eklendi!" << endl;
+			break;
+		case 3:
+			cout << IslemleriYazdir(hesapNo) << endl;
 			break;
 		default:
 			break;
@@ -351,4 +356,51 @@ bool GirisYap()
 
 void TireEkle() {
 	cout << "----------------------------\n";
+}
+
+string IslemleriYazdir(int hesapNo)
+{
+	int saat, dakika, saniye, gun, yil, ay;
+	string tarih1, tarih2;
+	struct tm ilkTarih, ikinciTarih;
+
+	cout << "Lütfen Birinci tarihi giriniz (Tarih formatý Gün/Ay/YýlTSaat:Dakika:Saniye þeklinde olmalýdýr Örnek: 01/01/2020T14:24:56" << endl;
+	cin >> tarih1;
+	
+	gun = stoi(tarih1.substr(0, 2));
+	ay = stoi(tarih1.substr(3, 2));
+	yil = stoi(tarih1.substr(6, 4));
+	saat = stoi(tarih1.substr(11, 2));
+	dakika = stoi(tarih1.substr(14, 2));
+	saniye = stoi(tarih1.substr(17, 2));
+	
+	ilkTarih.tm_mday = gun;
+	ilkTarih.tm_mon = ay;
+	ilkTarih.tm_year = yil - 1900;
+	ilkTarih.tm_hour = saat;
+	ilkTarih.tm_min = dakika;
+	ilkTarih.tm_sec = saniye;
+	
+	cout << "Ýkinci Tarihi giriniz (Ayný Formatta)" << endl;
+	
+	cin >> tarih2;
+	gun = stoi(tarih2.substr(0, 2));
+	ay = stoi(tarih2.substr(3, 2));
+	yil = stoi(tarih2.substr(6, 4));
+	saat = stoi(tarih2.substr(11, 2));
+	dakika = stoi(tarih2.substr(14, 2));
+	saniye = stoi(tarih2.substr(17, 2));
+
+	ikinciTarih.tm_mday = gun;
+	ikinciTarih.tm_mon = ay;
+	ikinciTarih.tm_year = yil - 1900;
+	ikinciTarih.tm_hour = saat;
+	ikinciTarih.tm_min = dakika;
+	ikinciTarih.tm_sec = saniye;
+	
+
+	time_t milliseconds1 = mktime(&ilkTarih);
+	time_t milliseconds2 = mktime(&ikinciTarih);
+
+	return SuperBank.HesapIslemleriniGetir(hesapNo, milliseconds1, milliseconds2);
 }

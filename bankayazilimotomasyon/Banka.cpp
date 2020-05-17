@@ -1,4 +1,7 @@
 #include "Banka.h"
+
+#include <iostream>
+
 #include "Hesap.h"
 using namespace std;
 
@@ -7,6 +10,13 @@ bool Banka::HesapEkle(Hesap hesap)
 	Hesaplar.push_back(hesap);
 	return true;
 }
+
+string Banka::HesapIslemleriniGetir(int hesapNo, time_t tarih1, time_t tarih2)
+{
+	Hesap hesap = HesapBul(hesapNo);
+	return hesap.TarihlereGoreIslemleriGetir(tarih1, tarih2);
+}
+
 
 bool Banka::HesapSil(int hesapNumarasi)
 {

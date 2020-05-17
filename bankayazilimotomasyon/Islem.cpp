@@ -11,3 +11,10 @@ string Islem::TarihDondur()
 {
 	return std::to_string((Tarih.tm_mday + 1)) + " " + std::to_string(Tarih.tm_mon) + " " + std::to_string(Tarih.tm_year + 1900) ;
 }
+string Islem::IslemBilgileriniDondur()
+{
+	return "\nÝþlem Tipi : " + this->IslemTipi +
+		"\nTutar: " + std::to_string(this->Tutar) +
+		"\nTarih: " + TarihDondur();
+
+}

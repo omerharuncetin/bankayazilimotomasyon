@@ -11,4 +11,5 @@ public:
 	int Tutar;
 	Islem(time_t milliseconds, string islemTipi, int tutar);
 	string TarihDondur();
+	string IslemBilgileriniDondur();
 };

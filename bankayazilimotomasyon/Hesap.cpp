@@ -39,10 +39,27 @@ string Hesap::HesapBilgileriGetir() {
 	return temp;
 }
 
+ostream& operator<<(ostream& os, const time_t dt)
+{
+	os << std::to_string(dt);
+	return os;
+}
+
+string Hesap::TarihlereGoreIslemleriGetir(time_t tarih1, time_t tarih2)
+{
+	string islemler = "";
+	for (int i = 0; i < Islemler.size(); i++)
+	{
+		if (Islemler[i].milliseconds >= tarih1 && Islemler[i].milliseconds <= tarih2)
+			islemler += Islemler[i].IslemBilgileriniDondur();
+	}
+	return islemler;
+}
+
+
 Hesap::Hesap(int musteriNumarasi, int hesapNumarasi) {
 	this->HesapTutari = 0;
 	this->MusteriNumarasi = musteriNumarasi;
 	this->HesapNumarasi = hesapNumarasi;
 	this->TakmaHesapAdi = "";
 }
-

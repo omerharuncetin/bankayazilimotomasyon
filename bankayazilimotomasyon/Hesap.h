@@ -14,7 +14,7 @@ protected:
 	int HesapTutari;
 	int IslemTutari;
 	string Sifre;
-	string operator<<(time_t inp1, time_t inp2);
+	friend ostream& operator<<(ostream& os, time_t dt);
 	vector <Islem> Islemler;
 
 public:
@@ -24,6 +24,7 @@ public:
 	int HesapTutariAl() { return this->HesapTutari; }
 	int MusteriNumarasiAl() { return this->MusteriNumarasi; }
 	virtual bool ParaCikisi(int tutar);
+	string TarihlereGoreIslemleriGetir(time_t tarih1, time_t tarih2);
 	string HesapBilgileriGetir();
 	string TakmaHesapAdi = "";
 };
